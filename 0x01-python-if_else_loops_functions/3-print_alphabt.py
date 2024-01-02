@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-for char in map(chr, range(97, 123)):
-    if char == "q" and char == "e":
+for char in range(97, 123):
+    if char == 113 or char == 101:
         continue
-    print("{}".format(char), end="")
+    print("{}".format(chr(char)), end="")
