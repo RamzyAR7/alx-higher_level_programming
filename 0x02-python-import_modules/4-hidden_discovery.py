@@ -5,4 +5,4 @@ if __name__ == "__main__":
     names_of_func = dir(hidden_4)
     for n in names_of_func:
         if n[:2] != "__":
-            print(n)
+            print("{}".format(n))
