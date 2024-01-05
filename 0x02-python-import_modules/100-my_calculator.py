@@ -1,7 +1,8 @@
 #!/usr/bin/python3
+from sys import argv
+from calculator_1 import add, sub, mul, div
+
 def calc():
-    from sys import argv, exit
-    from calculator_1 import add, sub, mul, div
     argc = len(argv) - 1
 
     if argc != 3:
@@ -12,22 +13,24 @@ def calc():
         print("Unknown operator. Available operators: +, -, * and /")
         exit(1)
 
-    result = 0
     a = int(argv[1])
     b = int(argv[3])
     operator = argv[2]
 
-    if operator == '+':
-        result = add(a, b)
-    elif operator == '-':
-        result = sub(a, b)
-    elif operator == '/':
-        result = div(a, b)
-    elif operator == '*':
-        result = mul(a, b)
+    result = match_calc(a, b, operator)
 
     print("{} {} {} = {}".format(a, operator, b, result))
 
+def match_calc(a, b, operator):
+    match operator:
+        case '+':
+            return add(a, b)
+        case '-':
+            return sub(a, b)
+        case '*':
+            return mul(a, b)
+        case '/':
+            return div(a, b)
 
 if __name__ == "__main__":
     calc()
