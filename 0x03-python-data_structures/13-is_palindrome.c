@@ -9,7 +9,7 @@
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *slw, *fst;
+	listint_t *slw, *fst, *prv, *cur, *next, *front, *back;
 
 	if (*head == NULL || (*head)->next == NULL)
 		return (1); /* Empty list or single node list is a palindrome */
@@ -25,9 +25,9 @@ int is_palindrome(listint_t **head)
 	}
 
 	/* Reverse the second half of the list */
-	listint_t *prv = NULL;
-	listint_t *cur = slw;
-	listint_t *next;
+	prv = NULL;
+	cur = slw;
+	next;
 
 	while (cur != NULL)
 	{
@@ -38,8 +38,8 @@ int is_palindrome(listint_t **head)
 	}
 
 	/* Compare values in the first and reversed second halves */
-	listint_t *front = *head;
-	listint_t *back = prv;
+	front = *head;
+	back = prv;
 
 	while (back != NULL)
 	{
