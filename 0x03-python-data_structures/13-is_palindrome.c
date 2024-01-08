@@ -9,39 +9,44 @@
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *head_n;
-	int len = 0, idx = 0;
-	int i, x;
-	int *arr;
+	listint_t *slw, *fst;
 
 	if (*head == NULL || (*head)->next == NULL)
-	{
-		return (1);
-	}
-	head_n = *head;
+		return (1); /* Empty list or single node list is a palindrome */
 
-	while (head_n != NULL)
-	{
-		head_n = head_n->next;
-		len++;
-	}
-	arr = malloc(sizeof(int) * len);
+	/* Use two pointers to find the middle of the list */
+	slw = *head;
+	fst = *head;
 
-	head_n = *head;
-	while (head_n != NULL)
+	while (fst != NULL && fst->next != NULL)
 	{
-		arr[idx] = head_n->n;
-		head_n = head_n->next;
-		idx++;
+		slw = slw->next;
+		fst = fst->next->next;
 	}
-	for (i = 0, x = len - 1; i < x; i++, x--)
+
+	/* Reverse the second half of the list */
+	listint_t *prv = NULL;
+	listint_t *cur = slw;
+	listint_t *next;
+
+	while (cur != NULL)
 	{
-		if (arr[i] != arr[x])
-		{
-			free(arr);
-			return (0);
-		}
+		next = cur->next;
+		cur->next = prv;
+		prv = cur;
+		cur = next;
 	}
-	free(arr);
-	return (1);
+
+	/* Compare values in the first and reversed second halves */
+	listint_t *front = *head;
+	listint_t *back = prv;
+
+	while (back != NULL)
+	{
+		if (front->n != back->n)
+			return (0); /* Not a palindrome */
+		front = front->next;
+		back = back->next;
+	}
+	return (1); /* It's a palindrome */
 }
