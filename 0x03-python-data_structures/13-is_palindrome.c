@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "lists.h"
+
 /**
  * is_palindrome - Write a function in C that checks if
  * a singly linked list is a palindrome.
@@ -9,44 +10,49 @@
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *slw, *fst, *prv, *cur, *next, *front, *back;
+	listint_t *head1 = *head;
+	listint_t *head2 = *head;
 
-	if (*head == NULL || (*head)->next == NULL)
-		return (1); /* Empty list or single node list is a palindrome */
+	if (*head == NULL)
+		return (1);
 
-	/* Use two pointers to find the middle of the list */
-	slw = *head;
-	fst = *head;
-
-	while (fst != NULL && fst->next != NULL)
+	while (head2 && head2->next && head2->next->next)
 	{
-		slw = slw->next;
-		fst = fst->next->next;
+		head1 = head1->next;
+		head2 = head2->next->next;
 	}
 
-	/* Reverse the second half of the list */
-	prv = NULL;
-	cur = slw;
-	next;
-
-	while (cur != NULL)
+	head1 = list_rev(&head1);
+	head2 = *head;
+	while (head1 && head2)
 	{
-		next = cur->next;
-		cur->next = prv;
-		prv = cur;
-		cur = next;
+		if (head1->n != head2->n)
+			return (0);
+		head1 = head1->next;
+		head2 = head2->next;
 	}
 
-	/* Compare values in the first and reversed second halves */
-	front = *head;
-	back = prv;
+	return (1);
+}
 
-	while (back != NULL)
+/**
+ * list_rev - Reverse a linked list
+ * @head: The list pointer
+ * Return: Pointer to the new head
+ */
+listint_t *list_rev(listint_t **head)
+{
+	listint_t *prv = NULL;
+	listint_t *next = NULL;
+
+	while (*head)
 	{
-		if (front->n != back->n)
-			return (0); /* Not a palindrome */
-		front = front->next;
-		back = back->next;
+		next = (*head)->next;
+		(*head)->next = prv;
+		prv = *head;
+		*head = next;
 	}
-	return (1); /* It's a palindrome */
+
+	*head = prv;
+	return (*head);
 }
