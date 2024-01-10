@@ -5,7 +5,7 @@ def best_score(a_dictionary):
     best_score = 0
     best_k = 0
 
-    for k, v in sorted(a_dictionary.items()):
+    for k, v in a_dictionary.items():
         if v > best_score:
             best_score = v
             best_k = k
