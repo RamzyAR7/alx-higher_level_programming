@@ -10,4 +10,7 @@ def best_score(a_dictionary):
             best_score = v
             best_k = k
 
-    return best_k
+    if best_k != 0:
+        return best_k
+    else:
+        return None
