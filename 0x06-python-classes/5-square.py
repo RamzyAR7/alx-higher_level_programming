@@ -3,7 +3,8 @@
 
 
 class Square:
-    """This class is a Tamplate for a square"""
+    """This module defines for a class Square"""
+
     def __init__(self, size=0):
         if not isinstance(size, int):
             raise TypeError("size must be an integer")
@@ -27,3 +28,12 @@ class Square:
 
     def area(self):
         return self.__size ** 2
+
+    def my_print(self):
+        if self.__size > 0:
+            for x in range(0, self.__size):
+                for y in range(0, self.__size):
+                    print("#", end="")
+                print()
+        else:
+            print()
