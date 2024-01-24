@@ -1,18 +1,12 @@
 #!/usr/bin/python3
-"""This module defines for a class Node"""
+"""This module defines for a class Node and a class SinglyLinkedList"""
 
 
 class Node:
+    """Class that defines properties of a node in a singly linked list"""
     def __init__(self, data, next_node=None):
-        if not isinstance(data, int):
-            raise TypeError("data must be an integer")
-        else:
-            self.__data = data
-
-        if next_node is not None and not isinstance(next_node, Node):
-            raise TypeError("next_node must be a Node object")
-        else:
-            self.__next_node = next_node
+        self.data = data
+        self.next_node = next_node
 
     @property
     def data(self):
@@ -22,8 +16,7 @@ class Node:
     def data(self, value):
         if not isinstance(value, int):
             raise TypeError("data must be an integer")
-        else:
-            self.__data = value
+        self.__data = value
 
     @property
     def next_node(self):
@@ -33,13 +26,11 @@ class Node:
     def next_node(self, value):
         if value is not None and not isinstance(value, Node):
             raise TypeError("next_node must be a Node object")
-        else:
-            self.__next_node = value
+        self.__next_node = value
 
 
 class SinglyLinkedList:
-    """This class defines a singly linked list"""
-
+    """Class that defines properties of a singly linked list"""
     def __init__(self):
         self.__head = None
 
