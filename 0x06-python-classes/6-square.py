@@ -5,14 +5,8 @@
 class Square:
     """This class is a Tamplate for a square"""
     def __init__(self, size=0, position=(0, 0)):
-        if not isinstance(size, int) or not isinstance(position, tuple):
-            raise TypeError("""size must be an integer,
-                            position must be a tuple of two integers""")
-        elif size < 0 or position[0] < 0 or position[1] < 0:
-            raise ValueError("size and position must be >= 0")
-        else:
-            self.__size = size
-            self.__position = position
+        self.__size = size
+        self.__position = position
 
     @property
     def size(self):
@@ -41,7 +35,6 @@ class Square:
             raise ValueError("elements of position must be >= 0")
         else:
             self.__position = value
-
 
     def area(self):
         return self.__size ** 2
