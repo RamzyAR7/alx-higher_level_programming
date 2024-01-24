@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-"""This module for defines a class Square"""
+"""This module defines for a class Square"""
 
 
 class Square:
-    """This class is a squeleton for a square"""
+    """This class is a Tamplate for a square"""
     def __init__(self, size):
         self.__size = size
