@@ -4,21 +4,14 @@
 
 def text_indentation(text):
     """this function print text"""
-    if type(text) is not str:
+    if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    punctuation_chars = ['.', '?', ':']
+    for delim in ".?:":
+        text = (delim + "\n\n").join(
+            [line.strip(" ") for line in text.split(delim)])
 
-    line = ""
-    for char in text:
-        line += char
-        if char in punctuation_chars:
-            print(line.strip())
-            print()
-            line = ""
-
-    if line:
-        print(line.strip())
+    print(text, end="")
 
 
 if __name__ == "__main__":
