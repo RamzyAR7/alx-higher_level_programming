@@ -51,48 +51,48 @@ eleventh test case: 0.9 + 0.9 = 0
 
 Add infinity:
 
-    >>> add_integer(float('inf'), float('-inf'))
+    >>> add_integers(float('inf'), float('-inf'))
     Traceback (most recent call last):
     ...
     OverflowError: cannot convert float infinity to integer
 
 Add nan:
 
-    >>> add_integer(0, float('nan'))
+    >>> add_integers(0, float('nan'))
     Traceback (most recent call last):
     ...
     ValueError: cannot convert float NaN to integer
-
+    
 Test first arg invalid:
 
-    >>> add_integer("foo", 0)
+    >>> add_integers("foo", 0)
     Traceback (most recent call last):
         ...
     TypeError: a must be an integer
 
 Test second arg invalid:
 
-    >>> add_integer(123123, [])
+    >>> add_integers(123123, [])
     Traceback (most recent call last):
         ...
     TypeError: b must be an integer
 
 Test both args invalid:
 
-    >>> add_integer(None, None)
+    >>> add_integers(None, None)
     Traceback (most recent call last):
         ...
     TypeError: a must be an integer
 
 Test two strings:
 
-    >>> add_integer("foo", "bar")
+    >>> add_integers("foo", "bar")
     Traceback (most recent call last):
         ...
     TypeError: a must be an integer
 
 Test float overflow:
-    >>> add_integer(float('inf'), 0)
+    >>> add_integers(float('inf'), 0)
     Traceback (most recent call last):
     ...
     OverflowError: cannot convert float infinity to integer
