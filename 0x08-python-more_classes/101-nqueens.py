@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 """this module contains a function that solves the N queens problem"""
+
+
 import sys
+
 
 def is_safe(board, row, col, N):
     # Check if there is a queen in the same column
@@ -20,6 +23,7 @@ def is_safe(board, row, col, N):
 
     return True
 
+
 def solve_nqueens_util(board, row, N, solutions):
     if row == N:
         solutions.append([[i, board[i].index(1)] for i in range(N)])
@@ -30,6 +34,7 @@ def solve_nqueens_util(board, row, N, solutions):
             board[row][col] = 1
             solve_nqueens_util(board, row + 1, N, solutions)
             board[row][col] = 0
+
 
 def solve_nqueens(N):
     if not isinstance(N, int):
@@ -47,6 +52,7 @@ def solve_nqueens(N):
 
     for solution in solutions:
         print(solution)
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
