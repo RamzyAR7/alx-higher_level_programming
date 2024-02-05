@@ -1,7 +1,7 @@
-0t.txt module
-====================
+this module contains a class MyList that
+inherits from list
 
-Importing the class from the module:
+Importing the class:
 >>> MyList = __import__("1-my_list").MyList
 
 Checking for module docstring:
@@ -21,25 +21,19 @@ Checking for method docstring
 
 Checking given test case
 >>> my_list = MyList()
-
->>> my_list.append(1)
-
->>> my_list.append(4)
-
+>>> my_list.append(20)
+>>> my_list.append(8)
 >>> my_list.append(2)
-
->>> my_list.append(3)
-
+>>> my_list.append(4)
 >>> my_list.append(5)
-
 >>> print(my_list)
-[1, 4, 2, 3, 5]
+[20, 8, 2, 4, 5]
 
 >>> my_list.print_sorted()
-[1, 2, 3, 4, 5]
+[2, 4, 5, 8, 20]
 
 >>> print(my_list)
-[1, 4, 2, 3, 5]
+[20, 8, 2, 4, 5]
 
 Checking empty object
 >>> obj1 = MyList()
@@ -53,19 +47,19 @@ Checking empty object
 Checking negative values
 >>> obj2 = MyList()
 
->>> obj2.append(-1)
+>>> obj2.append(-8)
 
 >>> obj2.append(0)
 
->>> obj2.append(-233)
+>>> obj2.append(-23)
 
 >>> obj2.append(-9)
 
 >>> print(obj2)
-[-1, 0, -233, -9]
+[-8, 0, -23, -9]
 
 >>> obj2.print_sorted()
-[-233, -9, -1, 0]
+[-23, -9, -8, 0]
 
 Checking NULL object
 >>> obj3 = MyList()
