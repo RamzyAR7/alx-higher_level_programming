@@ -2,7 +2,8 @@
 """this module for class Rectangle"""
 
 
-from _7-base_geometry.py import BaseGeometry
+BaseGeometry = __import__(7-base_geometry.py).BaseGeometry
+
 
 class Rectangle(BaseGeometry):
     """Rectangle class"""
