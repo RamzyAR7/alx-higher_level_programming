@@ -75,3 +75,11 @@ Passing None to method
     Traceback (most recent call last):
         ...
     TypeError: age must be an integer
+
+Passing float to method
+    >>> bg = BaseGeometry()
+    >>> bg.integer_validator("age", 3.5)
+    Traceback (most recent call last):
+        ...
+    TypeError: age must be an integer
+
