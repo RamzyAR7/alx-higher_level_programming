@@ -1,11 +1,16 @@
 #!/usr/bin/python3
-"""this module for class Square"""
+"""
+this module for class Square
+"""
 Rectangle = __import__('9-rectangle.py').Rectangle
 
 
 class Square(Rectangle):
-    """ Square class"""
+    """ 
+    Square class
+    """
     def __init__(self, size):
+        """init func"""
         super().integer_validator("size", size)
         self.__size = size
 
