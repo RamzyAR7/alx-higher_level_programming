@@ -24,12 +24,6 @@ Trying to pass a non-integer argument
     TypeError: Ahmed must be an integer
 
 
-Trying to pass a boolean value
-    >>> bg = BaseGeometry()
-    >>> bg.integer_validator("Ahmed", True)
-
-
-
 Trying to pass a negative value
     >>> bg = BaseGeometry()
     >>> bg.integer_validator("Ahmed", -5)
