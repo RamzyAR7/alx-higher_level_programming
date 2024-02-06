@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Module for the MyInt class """
 
+
 class MyInt(int):
     """ MyInt class, inherits from int """
 
