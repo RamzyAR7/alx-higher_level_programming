@@ -7,12 +7,10 @@ if __name__ == "__main__":
         __import__("6-load_from_json_file").load_from_json_file
     save_to_json_file = __import__("5-save_to_json_file").save_to_json_file
 
-    argv = sys.argv[1:]
-
     try:
         json_str = load_from_json_file("add_item.json")
     except FileExistsError:
         json_str = []
 
-    json_str.extend(argv)
+    json_str.extend(sys.argv[1:])
     save_to_json_file(json_str, "add_item.json")
