@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """this module for stats"""
+
+
 def print_metrics(size, status_codes):
     """
     Print accumulated metrics
