@@ -15,7 +15,7 @@ class Student:
 
     def to_json(self, attrs=None):
         """ return dict of all attribute as key & value"""
-        if attrs is None or not attrs:
+        if attrs is None or not attrs or not isinstance(attrs, list):
             return self.__dict__
 
         js_dict = {}
