@@ -5,6 +5,7 @@ load_from_json_file = \
         __import__("6-load_from_json_file").load_from_json_file
 save_to_json_file = __import__("5-save_to_json_file").save_to_json_file
 
+
 def main():
     argv = sys.argv[1:]
 
@@ -16,6 +17,7 @@ def main():
     existing_items.extend(argv)
 
     save_to_json_file(existing_items, "add_item.json")
+
 
 if __name__ == "__main__":
     main()
