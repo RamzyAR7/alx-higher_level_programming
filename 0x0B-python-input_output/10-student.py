@@ -15,11 +15,8 @@ class Student:
 
     def to_json(self, attrs=None):
         """ return dict of all attribute as key & value"""
-        if attrs is None or not attrs:
-            return self.__dict__
         js_dict = {}
-        if isinstance(attrs, list):
-            for x in attrs:
-                if hasattr(self, x):
-                    js_dict[x] = getattr(self, x)
+        for key, value in self.__dict__.items():
+            if not isinstance(attrs, list) or key in attrs:
+                js_dict[key] = value
         return js_dict
