@@ -17,8 +17,8 @@ class Student:
         """ return dict of all attribute as key & value"""
         if attrs is None or not attrs:
             return self.__dict__
+        js_dict = {}
         if isinstance(attrs, list):
-            js_dict = {}
             for x in attrs:
                 if hasattr(self, x):
                     js_dict[x] = getattr(self, x)
