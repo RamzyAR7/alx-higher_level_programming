@@ -3,7 +3,7 @@
 this module for Rectangle class
 """
 
-from base import Base
+from models.base import Base
 
 
 class Rectangle(Base):
@@ -70,40 +70,44 @@ class Rectangle(Base):
 
     def display(self):
         """display"""
-        print("\n" * self.__y)
+        print("\n" * self.y)
         for _ in range(self.__height):
-            print("." * self.__x, end="")
-            print("#" * self.__width)
+            print(" " * self.x, end="")
+            print("#" * self.width)
             print()
 
     def __str__(self):
         """print info"""
-        return f"[Rectangle] ({self.id}) \
-{self.__x}/{self.__y} - {self.__width}/{self.__height}"
+        return f"[{self.__class__.__name__}] ({self.id}) \
+{self.x}/{self.y} - {self.width}/{self.height}"
 
     def update(self, *args, **kwargs):
         """update if you use args"""
-        if len(args) > 0:
-            self.id = args[0]
-        if len(args) > 1:
-            self.width = args[1]
-        if len(args) > 2:
-            self.height = args[2]
-        if len(args) > 3:
-            self.x = args[3]
-        if len(args) > 4:
-            self.y = args[4]
+        if args:
+            if len(args) > 0:
+                self.id = args[0]
+            if len(args) > 1:
+                self.width = args[1]
+            if len(args) > 2:
+                self.height = args[2]
+            if len(args) > 3:
+                self.x = args[3]
+            if len(args) > 4:
+                self.y = args[4]
+        elif kwargs:
+            for key, value in kwargs.items():
+                match key:
+                    case "id":
+                        self.id = value
+                    case "width":
+                        self.width = value
+                    case "height":
+                        self.height = value
+                    case "x":
+                        self.x = value
+                    case "y":
+                        self.y = value
 
-        """update if you use kwargs"""
-        for key, value in kwargs.items():
-            match key:
-                case "id":
-                    self.id = value
-                case "width":
-                    self.width = value
-                case "height":
-                    self.height = value
-                case "x":
-                    self.x = value
-                case "y":
-                    self.y = value
+    def to_dictionary(self):
+        return {'x': self.x, 'y': self.y, 'id': self.id,
+                'height': self.height, 'width': self.width}
