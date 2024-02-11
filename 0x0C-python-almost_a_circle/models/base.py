@@ -35,7 +35,26 @@ class Base:
     @staticmethod
     def from_json_string(json_string):
         return json.loads(json_string)
-    
+
     @classmethod
     def create(cls, **dictionary):
-        
+        from models.rectangle import Rectangle
+        from models.square import Square
+
+        if cls is Rectangle:
+            obj = Rectangle(1, 1)
+        elif cls is Square:
+            obj = Square(1)
+        else:
+            obj = None
+        obj.update(**dictionary)
+        return obj
+
+    @classmethod
+    def load_from_file(cls):
+        from os import path
+
+        if not path.isfile(f"{cls.__name__}.json"):
+            return []
+        with open(f"{cls.__name__}.json", "r") as file:
+            return [cls.create(**l) for l in cls.from_json_string(file.read())]
