@@ -28,7 +28,7 @@ class Base:
 
     @classmethod
     def save_to_file(cls, list_objs):
-        with open(f"{cls.__name__}.json", "w") as file:
+        with open(f"{cls.__name__}.json", "w", encoding="utf-8") as file:
             obj_list = [obj.to_dictionary() for obj in list_objs]
             file.write(cls.to_json_string(obj_list))
 
@@ -42,9 +42,9 @@ class Base:
         from models.square import Square
 
         if cls is Rectangle:
-            obj = Rectangle(1, 1)
+            obj = Rectangle(2, 2)
         elif cls is Square:
-            obj = Square(1)
+            obj = Square(4)
         else:
             obj = None
         obj.update(**dictionary)
@@ -52,9 +52,11 @@ class Base:
 
     @classmethod
     def load_from_file(cls):
-        from os import path
-
-        if not path.isfile(f"{cls.__name__}.json"):
+        """also you can use path from os"""
+        try:
+            with open(f"{cls.__name__}.json", "r", encoding="utf-8") as file:
+                dicts = cls.from_json_string(file.read())
+        except FileNotFoundError:
             return []
-        with open(f"{cls.__name__}.json", "r") as file:
-            return [cls.create(**l) for l in cls.from_json_string(file.read())]
+        else:
+            return [cls.create(**dic) for dic in dicts]
