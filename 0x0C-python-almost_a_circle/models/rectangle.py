@@ -1,8 +1,6 @@
 #!/usr/bin/python3
-"""
-this module for Rectangle class
-"""
-from base import Base
+"""this module for Rectangle class"""
+from models.base import Base
 
 
 class Rectangle(Base):
