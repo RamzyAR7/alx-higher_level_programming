@@ -78,7 +78,7 @@ class Rectangle(Base):
             print()
 
     def __str__(self):
-        """print info"""
+        '''Returns string info about this rectangle.'''
         return f"[{self.__class__.__name__}] ({self.id}) \
 {self.x}/{self.y} - {self.width}/{self.height}"
 
