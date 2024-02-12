@@ -66,17 +66,17 @@ class Base:
     def save_to_file_csv(cls, list_objs):
         from models.rectangle import Rectangle
         from models.square import Square
-
+        lis = []
         if cls is Rectangle:
-            list_objs = [[obj.id, obj.width, obj.height, obj.x, obj.y]
-                            for obj in list_objs]
+            for o in list_objs:
+                lis.append([o.id, o.width, o.height, o.x, o.y])
         elif cls is Square:
-            list_objs = [[o.id, o.size, o.x, o.y]
-                            for o in list_objs]
+            for o in list_objs:
+                lis.append([o.id, o.size, o.x, o.y])
         with open(f"{cls.__name__}.csv", 'w', newline='',
                   encoding='utf-8') as file:
             writer = csv.writer(file)
-            writer.writerows(list_objs)
+            writer.writerows(lis)
 
     @classmethod
     def load_from_file_csv(cls):
