@@ -5,6 +5,7 @@ this module for Base class
 
 
 import json
+import csv
 
 
 class Base:
@@ -60,3 +61,64 @@ class Base:
             return []
         else:
             return [cls.create(**dic) for dic in dicts]
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        from models.rectangle import Rectangle
+        from models.square import Square
+
+        if cls is Rectangle:
+            list_objs = [[obj.id, obj.width, obj.height, obj.x, obj.y]
+                            for obj in list_objs]
+        elif cls is Square:
+            list_objs = [[o.id, o.size, o.x, o.y]
+                            for o in list_objs]
+        with open(f"{cls.__name__}.csv", 'w', newline='',
+                  encoding='utf-8') as file:
+            writer = csv.writer(file)
+            writer.writerows(list_objs)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        from models.rectangle import Rectangle
+        from models.square import Square
+        rt = []
+        with open(f"{cls.__name__}.csv", 'r', newline='',
+                  encoding='utf-8') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                row = [int(r) for r in row]
+                if cls is Rectangle:
+                    d = {"id": row[0], "width": row[1], "height": row[2],
+                         "x": row[3], "y": row[4]}
+                else:
+                    d = {"id": row[0], "size": row[1],
+                         "x": row[2], "y": row[3]}
+                rt.append(cls.create(**d))
+        return rt
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        import turtle
+        import time
+        from random import randrange
+        turtle.Screen().colormode(255)
+        for i in list_rectangles + list_squares:
+            t = turtle.Turtle()
+            t.color((randrange(255), randrange(255), randrange(255)))
+            t.pensize(1)
+            t.penup()
+            t.pendown()
+            t.setpos((i.x + t.pos()[0], i.y - t.pos()[1]))
+            t.pensize(10)
+            t.forward(i.width)
+            t.left(90)
+            t.forward(i.height)
+            t.left(90)
+            t.forward(i.width)
+            t.left(90)
+            t.forward(i.height)
+            t.left(90)
+            t.end_fill()
+
+        time.sleep(5)
