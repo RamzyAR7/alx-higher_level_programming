@@ -17,10 +17,11 @@ class Rectangle(Base):
 
     @property
     def width(self):
+        '''Width of this rectangle.'''
         return self.__width
 
     @width.setter
-    def width(self, width):
+    def width(self, width):      
         if not isinstance(width, int):
             raise TypeError("width must be an integer")
         if width <= 0:
@@ -29,6 +30,7 @@ class Rectangle(Base):
 
     @property
     def height(self):
+        '''Height of this rectangle.'''
         return self.__height
 
     @height.setter
@@ -41,6 +43,7 @@ class Rectangle(Base):
 
     @property
     def x(self):
+        '''x of this rectangle.'''
         return self.__x
 
     @x.setter
@@ -53,6 +56,7 @@ class Rectangle(Base):
 
     @property
     def y(self):
+        '''y of this rectangle.'''
         return self.__y
 
     @y.setter
@@ -108,5 +112,6 @@ class Rectangle(Base):
                         self.y = value
 
     def to_dictionary(self):
+        '''Returns dictionary representation of this class.'''
         return {'x': self.x, 'y': self.y, 'id': self.id,
                 'height': self.height, 'width': self.width}
