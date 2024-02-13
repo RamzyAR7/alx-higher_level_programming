@@ -24,7 +24,7 @@ class Square(Rectangle):
     def __str__(self):
         '''Returns string info about this square.'''
         return f"[{type(self).__name__}] ({self.id}) \
-{self.x}/{self.y} - {self.size}"
+{self.x}/{self.y} - {self.width}"
 
     def update(self, *args, **kwargs):
         """update if you use args"""
