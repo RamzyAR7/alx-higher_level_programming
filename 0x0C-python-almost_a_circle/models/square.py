@@ -27,26 +27,17 @@ class Square(Rectangle):
         )
 
     def update(self, *args, **kwargs):
-        """update if you use args"""
-        if args:
-            if len(args) > 0:
-                self.id = args[0]
-            if len(args) > 1:
-                self.size = args[1]
-            if len(args) > 2:
-                self.x = args[2]
-            if len(args) > 3:
-                self.y = args[3]
-        elif kwargs:
-            for key, value in kwargs.items():
-                if key == "id":
-                    self.id = value
-                elif key == "size":
-                    self.size = value
-                elif key == "x":
-                    self.x = value
-                elif key == "y":
-                    self.y = value
+    """update class atrbutes"""
+    keys = ("id", "size", "x", "y")
+    for key, value in zip(keys, args):
+        if key == "id" and not isinstance(value, int):
+            continue
+        setattr(self, key, value)
+    if not args:
+        for key, value in kwargs.items():
+            if key == "id" and not isinstance(value, int):
+                continue
+            setattr(self, key, value)
 
     def to_dictionary(self):
         return {"id": self.id, "size": self.size,
