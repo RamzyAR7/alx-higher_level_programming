@@ -29,12 +29,10 @@ class Base:
     def save_to_file(cls, list_objs):
         """Make a JSON class file represntation"""
 
-        list_dict = (
-            [*map(lambda self: self.to_dictionary(), list_objs)]
-            if list_objs else []
-        )
-        with open(f"{cls.__name__}.json", "w") as f:
-            f.write(Base.to_json_string(list_dict))
+        if list_objs is not None:
+            list_objs = [o.to_dictionary() for o in list_objs]
+        with open("{}.json".format(cls.__name__), "w", encoding="utf-8") as f:
+            f.write(cls.to_json_string(list_objs))
 
     @staticmethod
     def from_json_string(json_string):
