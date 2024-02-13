@@ -16,10 +16,10 @@ class Square(Rectangle):
         return self.width
 
     @size.setter
-    def size(self, size):
+    def size(self, value):
         """Setter method"""
-        self.width = size
-        self.height = size
+        self.width = value
+        self.height = value
 
     def __str__(self):
         '''Returns string info about this square.'''
