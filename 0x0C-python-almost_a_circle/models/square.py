@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """A module contain the Square class"""
 from models.rectangle import Rectangle
 
