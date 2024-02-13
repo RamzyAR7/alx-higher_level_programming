@@ -20,20 +20,19 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        if list_dictionaries is None or list_dictionaries == "":
+        if list_dictionaries is None or not list_dictionaries:
             return "[]"
         else:
             return json.dumps(list_dictionaries)
+
     @classmethod
     def save_to_file(cls, list_objs):
-        """Make a JSON class file represntation"""
-
-        list_dict = (
-            [*map(lambda self: self.to_dictionary(), list_objs)]
-            if list_objs else []
-        )
-        with open(f"{cls.__name__}.json", "w") as f:
-            f.write(Base.to_json_string(list_dict))
+        """Save a class to a file"""
+        if list_objs is None or not list_objs:
+            list_objs = []
+        with open(f"{cls.__name__}.json", "w", encoding="utf-8") as file:
+            obj_list = [obj.to_dictionary() for obj in list_objs]
+            file.write(cls.to_json_string(obj_list))
 
     @staticmethod
     def from_json_string(json_string):
