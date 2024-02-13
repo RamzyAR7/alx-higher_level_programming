@@ -46,13 +46,14 @@ class Base:
     @classmethod
     def create(cls, **dictionary):
         """Create instanse from a dictionary"""
-
-        obj = {}
-        try:
-            obj = cls(1)
-        except TypeError:
-            obj = cls(1, 1)
-
+        from models.rectangle import Rectangle
+        from models.square import Square
+        if cls is Rectangle:
+            obj = Rectangle(1, 1)
+        elif cls is Square:
+            obj = Square(1)
+        else:
+            obj = None
         obj.update(**dictionary)
         return obj
 
