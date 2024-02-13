@@ -6,21 +6,25 @@ from models.rectangle import Rectangle
 class Square(Rectangle):
     """ Square class"""
     def __init__(self, size, x=0, y=0, id=None):
-        """Class constructor"""
+        """Initalization"""
         super().__init__(size, size, x, y, id)
-
-    def __str__(self):
-        return f"[Square] \
-({self.id}) {self.x}/{self.y} - {self.width}"
 
     @property
     def size(self):
+        """Getter method"""
         return self.width
 
     @size.setter
-    def size(self, size):
-        self.width = size
-        self.height = size
+    def size(self, value):
+        """Setter method"""
+        self.width = value
+        self.height = value
+
+    def __str__(self):
+        """class string representation"""
+        return "[Square] ({:d}) {:d}/{:d} - {:d}".format(
+            self.id, self.x, self.y, self.size
+        )
 
     def update(self, *args, **kwargs):
         """update if you use args"""
