@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """A module contain the Square class"""
+
 from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
     """Square class"""
-
     def __init__(self, size, x=0, y=0, id=None):
         """Initalization"""
         super().__init__(size, size, x, y, id)
@@ -23,7 +23,7 @@ class Square(Rectangle):
 
     def __str__(self):
         '''Returns string info about this square.'''
-        return f"[Square] ({self.id}) \
+        return f"[{type(self).__name__}] ({self.id}) \
 {self.x}/{self.y} - {self.size}"
 
     def update(self, *args, **kwargs):
