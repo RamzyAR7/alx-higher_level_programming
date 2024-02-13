@@ -95,22 +95,35 @@ class Rectangle(Base):
 {self.x}/{self.y} - {self.width}/{self.height}"
 
     def update(self, *args, **kwargs):
-        """update class atrbutes"""
-        keys = ("id", "width", "height", "x", "y")
-        for key, value in zip(keys, args):
-            if key == "id" and not isinstance(value, int):
-                continue
-            setattr(self, key, value)
-        if not args:
+        """update if you use args"""
+        if args:
+            if len(args) > 0:
+                self.id = args[0]
+            if len(args) > 1:
+                self.width = args[1]
+            if len(args) > 2:
+                self.height = args[2]
+            if len(args) > 3:
+                self.x = args[3]
+            if len(args) > 4:
+                self.y = args[4]
+        elif kwargs:
             for key, value in kwargs.items():
-                if key == "id" and not isinstance(value, int):
-                    continue
-                setattr(self, key, value)
+                match key:
+                    case "id":
+                        self.id = value
+                    case "width":
+                        self.width = value
+                    case "height":
+                        self.height = value
+                    case "x":
+                        self.x = value
+                    case "y":
+                        self.y = value
+
 
     def to_dictionary(self):
-        """get dictionary copy of the class"""
-        class_dict = {}
-        keys = ("id", "width", "height", "x", "y")
-        for key in keys:
-            class_dict[key] = getattr(self, key)
-        return class_dict
+        '''Returns dictionary representation of this class.'''
+        return {"id": self.id, "width": self.__width, "height": self.__height,
+                "x": self.__x, "y": self.__y}
+
