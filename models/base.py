@@ -1,18 +1,20 @@
 #!/usr/bin/python3
-"""this module for Base class"""
+"""
+this module for Base class
+"""
+
+
 import json
-import turtle
+import csv
 
 
 class Base:
-    """base class"""
-
+    """Base class"""
     __nb_objects = 0
 
     def __init__(self, id=None):
-        """Initalization"""
-
-        if id:
+        """class constructor"""
+        if id is not None:
             self.id = id
         else:
             Base.__nb_objects += 1
@@ -24,48 +26,46 @@ class Base:
             return "[]"
         else:
             return json.dumps(list_dictionaries)
+
     @classmethod
     def save_to_file(cls, list_objs):
-        """Make a JSON class file represntation"""
-
-        list_dict = (
-            [*map(lambda self: self.to_dictionary(), list_objs)]
-            if list_objs else []
-        )
-        with open(f"{cls.__name__}.json", "w") as f:
-            f.write(Base.to_json_string(list_dict))
+        """Save a class to a file"""
+        if list_objs is None or list_objs == "":
+            list_objs = []
+        with open(f"{cls.__name__}.json", "w", encoding="utf-8") as file:
+            obj_list = [obj.to_dictionary() for obj in list_objs]
+            file.write(cls.to_json_string(obj_list))
 
     @staticmethod
     def from_json_string(json_string):
-        """Make a list of JSON class file represntation"""
-
-        if json_string:
-            return json.loads(json_string)
-        else:
+        if json_string is None or json_string == "":
             return []
+        return json.loads(json_string)
 
     @classmethod
     def create(cls, **dictionary):
-        """Create instanse from a dictionary"""
+        from models.rectangle import Rectangle
+        from models.square import Square
 
-        obj = {}
-        try:
-            obj = cls(1)
-        except TypeError:
-            obj = cls(1, 1)
-
+        if cls is Rectangle:
+            obj = Rectangle(2, 2)
+        elif cls is Square:
+            obj = Square(4)
+        else:
+            obj = None
         obj.update(**dictionary)
         return obj
 
     @classmethod
     def load_from_file(cls):
-        """Create instanse from a json file"""
+        """also you can use path from os"""
         try:
-            with open(f"{cls.__name__}.json", "r") as f:
-                return [cls.create(**inst) for inst in
-                        cls.from_json_string(f.read())]
+            with open(f"{cls.__name__}.json", "r", encoding="utf-8") as file:
+                dicts = cls.from_json_string(file.read())
         except FileNotFoundError:
             return []
+        else:
+            return [cls.create(**dic) for dic in dicts]
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
@@ -118,50 +118,26 @@ class Base:
 
     @staticmethod
     def draw(list_rectangles, list_squares):
-        cursor = turtle.Turtle()
-        cursor.color("blue", "red")
-        cursor.penup()
-        cursor.left(180)
-        cursor.forward(50)
-        cursor.pendown()
-        for rect in list_rectangles:
-            width = rect.width
-            height = rect.height
-            cursor.begin_fill()
-            cursor.forward(width)
-            cursor.right(90)
-            cursor.forward(height)
-            cursor.right(90)
-            cursor.forward(width)
-            cursor.right(90)
-            cursor.forward(height)
-            cursor.penup()
-            cursor.right(180)
-            cursor.forward(height + 10)
-            cursor.left(90)
-            cursor.pendown()
-            cursor.end_fill()
+        import turtle
+        import time
+        from random import randrange
+        turtle.Screen().colormode(255)
+        for i in list_rectangles + list_squares:
+            t = turtle.Turtle()
+            t.color((randrange(255), randrange(255), randrange(255)))
+            t.pensize(1)
+            t.penup()
+            t.pendown()
+            t.setpos((i.x + t.pos()[0], i.y - t.pos()[1]))
+            t.pensize(10)
+            t.forward(i.width)
+            t.left(90)
+            t.forward(i.height)
+            t.left(90)
+            t.forward(i.width)
+            t.left(90)
+            t.forward(i.height)
+            t.left(90)
+            t.end_fill()
 
-        cursor.penup()
-        cursor.goto(0, 0)
-        cursor.left(180)
-        cursor.forward(50)
-        cursor.pendown()
-
-        for square in list_squares:
-            size = square.size
-            cursor.begin_fill()
-            for i in range(3):
-                cursor.forward(size)
-                cursor.left(90)
-            cursor.forward(size)
-            cursor.penup()
-            cursor.right(180)
-            cursor.forward(size + 10)
-            cursor.right(90)
-            cursor.pendown()
-            cursor.end_fill()
-        cursor.penup()
-        cursor.goto(0, 0)
-        cursor.left(90)
-        turtle.done()
+        time.sleep(5)
