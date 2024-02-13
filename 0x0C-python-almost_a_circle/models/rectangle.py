@@ -79,20 +79,20 @@ class Rectangle(Base):
         self.__y = value
 
     def area(self):
-        """return the rectangle area"""
-        return self.__width * self.__height
+        """Calculate the area of the rectangle."""
+        return self.height * self.width
 
     def display(self):
-        """print the rectangle"""
-        print("\n" * self.__y, end="")
-        for i in range(self.__height):
-            print(" " * self.__x + "#" * self.__width)
+        """display"""
+        print("\n" * self.y, end="")
+        for _ in range(self.__height):
+            print(" " * self.x, end="")
+            print("#" * self.width)
 
     def __str__(self):
-        """class string representation"""
-        return "[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}".format(
-            self.id, self.__x, self.__y, self.__width, self.__height
-        )
+        '''Returns string info about this rectangle.'''
+        return f"[Rectangle] ({self.id}) \
+{self.x}/{self.y} - {self.width}/{self.height}"
 
     def update(self, *args, **kwargs):
         """update class atrbutes"""
