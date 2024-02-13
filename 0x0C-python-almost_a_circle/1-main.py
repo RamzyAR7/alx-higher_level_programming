@@ -1,14 +1,12 @@
 #!/usr/bin/python3
 """ 1-main """
 from models.rectangle import Rectangle
+from models.square import Square
 
 if __name__ == "__main__":
 
-    r1 = Rectangle(10, 2)
-    print(r1.id)
+    Square.save_to_file_csv([])
+    output = Square.load_from_file_csv()
 
-    r2 = Rectangle(2, 10)
-    print(r2.id)
 
-    r3 = Rectangle(10, 2, 0, 0, 12)
-    print(r3.id)
+    output = Square.load_from_file_csv()

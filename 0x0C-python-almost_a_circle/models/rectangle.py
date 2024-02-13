@@ -19,8 +19,8 @@ class Rectangle(Base):
         return self.__width
 
     @width.setter
-    def width(self, width):      
-        if not isinstance(width, int):
+    def width(self, width):
+        if type(width) is not int:
             raise TypeError("width must be an integer")
         if width <= 0:
             raise ValueError("width must be > 0")
@@ -33,7 +33,7 @@ class Rectangle(Base):
 
     @height.setter
     def height(self, height):
-        if not isinstance(height, int):
+        if type(height) is not int:
             raise TypeError("height must be an integer")
         if height <= 0:
             raise ValueError("height must be > 0")
@@ -46,7 +46,7 @@ class Rectangle(Base):
 
     @x.setter
     def x(self, x):
-        if not isinstance(x, int):
+        if type(x) is not int:
             raise TypeError("x must be an integer")
         if x < 0:
             raise ValueError("x must be >= 0")
@@ -59,23 +59,22 @@ class Rectangle(Base):
 
     @y.setter
     def y(self, y):
-        if not isinstance(y, int):
+        if type(y) is not int:
             raise TypeError("y must be an integer")
         if y < 0:
             raise ValueError("y must be >= 0")
         self.__y = y
 
     def area(self):
-        """area value of the Rectangle instance."""
+        """Calculate the area of the rectangle."""
         return self.height * self.width
 
     def display(self):
         """display"""
-        print("\n" * self.y)
+        print("\n" * self.y, end="")
         for _ in range(self.__height):
             print(" " * self.x, end="")
             print("#" * self.width)
-            print()
 
     def __str__(self):
         '''Returns string info about this rectangle.'''
@@ -111,5 +110,5 @@ class Rectangle(Base):
 
     def to_dictionary(self):
         '''Returns dictionary representation of this class.'''
-        return {'x': self.x, 'y': self.y, 'id': self.id,
-                'height': self.height, 'width': self.width}
+        return {"id": self.id, "width": self.__width, "height": self.__height,
+                "x": self.__x, "y": self.__y}
