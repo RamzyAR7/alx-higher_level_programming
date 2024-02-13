@@ -16,34 +16,38 @@ class Square(Rectangle):
         return self.width
 
     @size.setter
-    def size(self, value):
+    def size(self, size):
         """Setter method"""
-        self.width = value
-        self.height = value
+        self.width = size
+        self.height = size
 
     def __str__(self):
-        """class string representation"""
-        return "[Square] ({:d}) {:d}/{:d} - {:d}".format(
-            self.id, self.x, self.y, self.size
-        )
+        '''Returns string info about this square.'''
+        return f"[Square] ({self.id}) \
+{self.x}/{self.y} - {self.size}"
 
     def update(self, *args, **kwargs):
-        """update class atrbutes"""
-        keys = ("id", "size", "x", "y")
-        for key, value in zip(keys, args):
-            if key == "id" and not isinstance(value, int):
-                continue
-            setattr(self, key, value)
-        if not args:
+        """update if you use args"""
+        if args:
+            if len(args) > 0:
+                self.id = args[0]
+            if len(args) > 1:
+                self.size = args[1]
+            if len(args) > 2:
+                self.x = args[2]
+            if len(args) > 3:
+                self.y = args[3]
+        elif kwargs:
             for key, value in kwargs.items():
-                if key == "id" and not isinstance(value, int):
-                    continue
-                setattr(self, key, value)
+                if key == "id":
+                    self.id = value
+                elif key == "size":
+                    self.size = value
+                elif key == "x":
+                    self.x = value
+                elif key == "y":
+                    self.y = value
 
     def to_dictionary(self):
-        """get dictionary copy of the class"""
-        class_dict = {}
-        keys = ("id", "size", "x", "y")
-        for key in keys:
-            class_dict[key] = getattr(self, key)
-        return class_dict
+        return {"id": self.id, "size": self.size,
+                "x": self.x, "y": self.y}

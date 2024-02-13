@@ -68,7 +68,6 @@ class Base:
         else:
             return [cls.create(**dic) for dic in dicts]
 
-
     @classmethod
     def save_to_file_csv(cls, list_objs):
         """Make a CVS class file represntation"""
