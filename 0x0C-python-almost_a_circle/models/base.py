@@ -61,11 +61,13 @@ class Base:
     def load_from_file(cls):
         """Create instanse from a json file"""
         try:
-            with open(f"{cls.__name__}.json", "r") as f:
-                return [cls.create(**inst) for inst in
-                        cls.from_json_string(f.read())]
+            with open(f"{cls.__name__}.json", "r", encoding="utf-8") as file:
+                dicts = cls.from_json_string(file.read())
         except FileNotFoundError:
             return []
+        else:
+            return [cls.create(**dic) for dic in dicts]
+
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
