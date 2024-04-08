@@ -12,7 +12,7 @@ if (arg.length < 2) {
     if (arg[i] > max) {
       max2 = max;
       max = arg[i];
-    } else if (arg[i] > max2 && arg[i] < max) {
+    } if (arg[i] > max2 && arg[i] < max) {
       max2 = arg[i];
     }
   }
