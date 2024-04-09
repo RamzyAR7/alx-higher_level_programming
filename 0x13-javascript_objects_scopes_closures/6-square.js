@@ -17,7 +17,7 @@ class Square extends Rectangle {
         console.log(rec);
       }
     } else {
-      super.print();
+      this.print();
     }
   }
 }
