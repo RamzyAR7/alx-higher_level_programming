@@ -1,8 +1,7 @@
 #!/usr/bin/node
-const Rectangle = require('./3-rectangle');
+const Square = require('./6-square');
 
-const r1 = new Rectangle(2, 3);
-r1.print();
+const s1 = new Square(4);
+s1.charPrint();
 
-const r2 = new Rectangle(10, 5);
-r2.print();
+s1.charPrint('C');
