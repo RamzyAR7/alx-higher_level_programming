@@ -7,12 +7,12 @@ class Rectangle {
     }
   }
 
-  print () {
+  print (c = 'X') {
     let x, y;
     for (x = 0; x < this.height; x++) {
       let rec = '';
       for (y = 0; y < this.width; y++) {
-        rec += 'X';
+        rec += c;
       }
       console.log(rec);
     }
