@@ -7,7 +7,9 @@ class Square extends Rectangle {
   }
 
   charPrint (c) {
-    if (c) {
+    if (c === undefined) {
+      this.print();
+    } else {
       let x, y;
       for (x = 0; x < this.height; x++) {
         let rec = '';
@@ -16,8 +18,6 @@ class Square extends Rectangle {
         }
         console.log(rec);
       }
-    } else {
-      this.print();
     }
   }
 }
