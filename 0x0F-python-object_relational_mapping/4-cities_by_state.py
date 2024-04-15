@@ -16,9 +16,10 @@ def main():
         db=sys.argv[3]
     )
     cur = conn.cursor()
-    query = """SELECT *
-                FROM cities
-                ORDER BY id ASC
+    query = """SELECT cities.id, cities.name, states.name
+                FROM cities, states
+                WHERE cities.id = states.id
+                ORDER BY cities.id ASC
                 """
     cur.execute(query)
 
