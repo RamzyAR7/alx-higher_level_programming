@@ -16,11 +16,11 @@ def main():
         db=sys.argv[3]
     )
     cur = conn.cursor()
-    cur.execute(f"""SELECT *
+    cur.execute("""SELECT *
                 FROM states
-                WHERE name = '{sys.argv[4]}'
+                WHERE name = '{}'
                 ORDER BY id ASC
-                """)
+                """.format(sys.argv[4]))
 
     res = cur.fetchall()
     for row in res:
