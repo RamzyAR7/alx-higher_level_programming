@@ -16,11 +16,12 @@ def main():
         db=sys.argv[3]
     )
     cur = conn.cursor()
-    cur.execute("""SELECT *
+    query = """SELECT *
                 FROM states
-                WHERE name LIKE BINARY '{}'
+                WHERE name = %s
                 ORDER BY id ASC
-                """.format(sys.argv[4]))
+                """
+    cur.execute(query, (sys.argv[4],))
 
     res = cur.fetchall()
     for row in res:
