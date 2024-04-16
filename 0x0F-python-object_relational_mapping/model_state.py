@@ -3,13 +3,16 @@
 this module for hbtn_0e_6_usa
 """
 from sqlalchemy import Integer, String, Column
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.ext.declarative import declarative_base
 
 
 Base = declarative_base()
 
 
 class State(Base):
+    """
+    this class for table states
+    """
     __tablename__ = "states"
 
     id = Column("id", Integer, primary_key=True)
