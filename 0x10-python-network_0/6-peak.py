@@ -1,16 +1,17 @@
 #!/usr/bin/python3
 """ a function that finds a peak in a list of unsorted integers. """
 
-def div(arr, low, high):
-    """div and conquer"""
 
-    med = int((high + low)/2)
-    if arr[med-1] <= arr[med] >= arr[med+1]:
-        return arr[med]
-    elif arr[med] > arr[med+1]:
-        return div(arr, low, med-1)
-    elif arr[med] < arr[med+1]:
-        return div(arr, med+1, high)
+def divide(array, low, high):
+    """divide and conquer"""
+
+    mid = int((high + low)/2)
+    if array[mid-1] <= array[mid] >= array[mid+1]:
+        return array[mid]
+    elif array[mid] > array[mid+1]:
+        return divide(array, low, mid-1)
+    elif array[mid] < array[mid+1]:
+        return divide(array, mid+1, high)
 
 
 def find_peak(list_of_integers):
@@ -18,4 +19,4 @@ def find_peak(list_of_integers):
 
     if not list_of_integers:
         return None
-    return div(list_of_integers, 0, len(list_of_integers)-1)
+    return divide(list_of_integers, 0, len(list_of_integers))
