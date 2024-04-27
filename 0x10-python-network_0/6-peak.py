@@ -2,21 +2,21 @@
 """ a function that finds a peak in a list of unsorted integers. """
 
 
-def divide(array, low, high):
-    """divide and conquer"""
-
-    mid = int((high + low)/2)
-    if array[mid-1] <= array[mid] >= array[mid+1]:
-        return array[mid]
-    elif array[mid] > array[mid+1]:
-        return divide(array, low, mid-1)
-    elif array[mid] < array[mid+1]:
-        return divide(array, mid+1, high)
-
-
 def find_peak(list_of_integers):
-    """Find peak of a list"""
-
-    if not list_of_integers:
+    """Find the peak"""
+    list_l = len(list_of_integers)
+    if list_l is 0:
         return None
-    return divide(list_of_integers, 0, len(list_of_integers))
+    peak = binary_search(list_of_integers, 0, list_l - 1)
+    return list_of_integers[peak]
+
+
+def binary_search(a, lo, hi):
+    """Recursive binary search of the peak"""
+    if lo >= hi:
+        return lo
+    mid = ((hi - lo) // 2) + lo
+    if a[mid] > a[mid + 1]:
+        return binary_search(a, lo, mid)
+    else:
+        return binary_search(a, mid + 1, hi)
