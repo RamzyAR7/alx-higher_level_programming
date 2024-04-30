@@ -10,5 +10,5 @@ from urllib.request import urlopen
 url = sys.argv[1]
 
 with urlopen(url) as respone:
-    if "X-Request-Id" in respone.headers:
-        print(respone.headers["X-Request-Id"])
+    head = respone.headers.get('X-Request-Id')
+    print(head)
