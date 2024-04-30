@@ -6,7 +6,7 @@ import requests
 
 
 if __name__ == "__main__":
-    
+
     with requests.get(argv[1]) as req:
         if req.ok:
             print(req.text)
