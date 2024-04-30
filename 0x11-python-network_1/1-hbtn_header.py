@@ -11,8 +11,8 @@ def main():
     url = sys.argv[1]
 
     with request.urlopen(url) as respone:
-        head = respone.headers.get('X-Request-Id')
-        print(head)
+        if "X-Request-Id" in respone.headers:
+            print(respone.headers["X-Request-Id"])
 
 
 if __name__ == "__main__":
