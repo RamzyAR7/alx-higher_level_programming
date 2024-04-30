@@ -10,7 +10,7 @@ def main():
     email = sys.argv[2]
 
     # Encoding the email parameter
-    data = urlencode({'email': email}).encode('utf-8')
+    data = urlencode({'email': email}).encode('ascii')
 
     # Creating a POST request
     req = Request(url, data=data, method='POST')
@@ -18,7 +18,7 @@ def main():
     # Sending the request and retrieving the response
     with urlopen(req) as response:
         # Reading and printing the response
-        print(response.read().decode('utf-8'))
+        print(response.read().decode('utf-8', "replace"))
 
 
 if __name__ == "__main__":
