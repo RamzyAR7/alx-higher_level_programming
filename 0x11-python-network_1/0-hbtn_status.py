@@ -1,4 +1,6 @@
+#!/usr/bin/python3
 from urllib import request
+
 
 with request.urlopen("https://alx-intranet.hbtn.io/status") as respone:
     site = respone.read()
