@@ -5,7 +5,7 @@ from sys import argv
 import requests
 
 
-def main():
+if __name__ == "__main__":
     val = "" if len(argv) == 1 else argv[1]
     values = {"q": val}
     with requests.post("http://0.0.0.0:5000/search_user", data=values) as res:
@@ -17,7 +17,3 @@ def main():
                 print("No result")
         except ValueError:
             print("Not a valid JSON")
-
-
-if __name__ == "__main__":
-    main()
