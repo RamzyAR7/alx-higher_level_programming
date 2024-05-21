@@ -8,10 +8,10 @@ const url = process.argv[2];
 request(url, function (err, res, body) {
   if (err) {
     console.log(err);
-  } 
-  let tasks = JSON.parse(body);
-  let obj = {};
-  for (let task of tasks) {
+  }
+  const tasks = JSON.parse(body);
+  const obj = {};
+  for (const task of tasks) {
     if (task.completed === true) {
       if (obj[task.userId] === undefined) {
         obj[task.userId] = 1;
