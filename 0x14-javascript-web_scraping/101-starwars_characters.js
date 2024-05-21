@@ -25,7 +25,7 @@ request(apiUrl, function (err, response, body) {
   const filmData = JSON.parse(body);
 
   // Define a function to fetch character data and print names
-  function fetchAndPrintCharacter(index) {
+  function fetchAndPrintCharacter (index) {
     if (index >= filmData.characters.length) {
       return; // End of characters list
     }
